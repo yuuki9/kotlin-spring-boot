@@ -1,0 +1,10 @@
+server:
+  port: 25694
+  servlet:
+    context-path: /egis
+
+debug: false
+
+spring:
+  profiles:
+    include: dev
