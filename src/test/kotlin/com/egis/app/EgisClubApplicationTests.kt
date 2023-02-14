@@ -1,4 +1,4 @@
-package com.egis.app.egisclub
+package com.egis.app
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

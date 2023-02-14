@@ -1,4 +1,4 @@
-package com.egis.app.egisclub
+package com.egis.app
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
