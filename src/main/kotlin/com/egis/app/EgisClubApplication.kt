@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
 	} catch (e: Exception){
 		when(e){
 			is CustomException -> "서버에러발생"
-			else -> println("네네네네")
+			else -> println("서버에러발생")
 		}
 	}
 }
