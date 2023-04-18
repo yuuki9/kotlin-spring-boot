@@ -2,13 +2,30 @@ package com.egis.app.domain.crew.entity
 
 import java.util.Date
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+
 class Crew(
     name:String,
-    department:String,
-    employeeNumber:Number,
-    club:String,
+    tier:String,
     sex:String,
-    start:Date
+    elo:Number
 ) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0;
+
+    var name = name
+        protected set
+
+    var tier = tier
+        protected set
+
+    var sex = sex
+        protected set
+
+    var elo = elo
+        protected set
 
 }
