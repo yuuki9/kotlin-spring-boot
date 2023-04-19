@@ -7,21 +7,21 @@ import com.egis.app.domain.crew.payload.response.CrewListResponse
 import com.egis.app.domain.crew.payload.response.CrewResponse
 import com.egis.app.domain.crew.repository.CrewRepository
 import org.springframework.stereotype.Service
+import java.util.Optional
 import javax.transaction.Transactional
 
 @Service
-class CrewService {
+class CrewService(
     private val crewRepository: CrewRepository
-        get() {
-            TODO()
-        }
 
+) {
     fun getCrewList() : CrewListResponse {
         val list: List<CrewResponse> = crewRepository.findAll()
             .map {
                 CrewResponse(
                     id = it.id,
                     name = it.name,
+                    nickName = it.nickName,
                     tier = it.tier,
                     sex = it.sex,
                     elo = it.elo
@@ -34,8 +34,10 @@ class CrewService {
     }
 
     fun save(request: CrewRequest) : Crew {
+
         val crew = Crew(
             name = request.name,
+            nickName = request.nickName,
             tier = request.tier,
             sex = request.sex,
             elo = 2400
@@ -44,19 +46,36 @@ class CrewService {
     }
 
     @Transactional
-    fun updateByElo(request : UpdateEloRequest) : CrewResponse {
-        val crew : Crew = crewRepository.findByName(request.name)
-        crew.update(
+    fun updateByElo(crewId: Long ,request : UpdateEloRequest) : CrewResponse {
+        val crew : Optional<Crew> = crewRepository.findById(crewId)
+        crew.get().update(
             elo = request.elo
         )
 
         return CrewResponse(
-            id = crew.id,
-            name = crew.name,
-            sex = crew.sex,
-            tier = crew.tier,
-            elo = crew.elo
+            id = crew.get().id,
+            nickName = crew.get().nickName,
+            name = crew.get().name,
+            sex = crew.get().sex,
+            tier = crew.get().tier,
+            elo = crew.get().elo
         )
     }
+
+    fun deleteById(crewId : Long) : CrewResponse {
+        val crew : Optional<Crew> = crewRepository.findById(crewId)
+        crewRepository.delete(crew.get())
+
+        return CrewResponse(
+            id = crew.get().id,
+            nickName = crew.get().nickName,
+            tier = crew.get().tier,
+            name = crew.get().name,
+            sex = crew.get().sex,
+            elo = crew.get().elo
+        )
+    }
+
+
 
 }

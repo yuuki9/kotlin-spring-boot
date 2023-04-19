@@ -10,7 +10,7 @@ interface CrewRepository : CrudRepository<Crew, Long> {
         TODO("Not yet implemented")
     }
 
-    fun findByName(name : String) : Crew {
+    fun findByName(name: String): Crew {
         TODO("Not yet implemented")
     }
 }
