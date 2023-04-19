@@ -1,7 +1,7 @@
 package com.egis.app.domain.crew.payload.response
 
 
-data class CrewInfoResponse(
+data class CrewResponse(
     val id: Long,
     val name: String,
     val sex: String,

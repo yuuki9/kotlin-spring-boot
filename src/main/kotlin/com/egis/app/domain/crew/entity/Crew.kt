@@ -5,7 +5,7 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-
+@Entity
 class Crew(
     name:String,
     tier:String,
@@ -28,4 +28,8 @@ class Crew(
     var elo = elo
         protected set
 
+    fun update(elo: Number): Crew {
+        this.elo = elo
+        return this
+    }
 }
